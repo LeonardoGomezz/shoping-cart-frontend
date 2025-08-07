@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { TbShoppingCart } from "react-icons/tb";
 
-export const Navbar = () => {
+interface NavbarProps {
+  onToggleSidebar: () => void;
+}
+
+export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
   return (
     <div className="px-4 mx-auto max-w-7xl sm:px-6 shadow-md">
       <div className="relative pt-6 pb-6">
@@ -23,6 +29,12 @@ export const Navbar = () => {
                 />
               </a>
               <div className="flex items-center -mr-2 md:hidden">
+                <button
+                  onClick={onToggleSidebar}
+                  className="md:hidden inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
+                >
+                  <TbShoppingCart />
+                </button>
                 <button
                   className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-50"
                   type="button"
@@ -65,9 +77,12 @@ export const Navbar = () => {
           </div>
           <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             <div className="inline-flex rounded-full shadow">
-              <div className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 ">
+              <button
+                onClick={onToggleSidebar}
+                className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
+              >
                 <TbShoppingCart />
-              </div>
+              </button>
             </div>
           </div>
         </nav>
