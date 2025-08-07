@@ -1,8 +1,15 @@
+import { addToCart } from "@/lib/api/cart";
 import { ProducTypes } from "@/types/product";
 import React from "react";
 import { IoBagAddOutline } from "react-icons/io5";
+import { toast } from "sonner";
 
 export const ProductCard = ({ id, name, price }: ProducTypes) => {
+  const addProductToCart = (id: number) => {
+    addToCart(id);
+    toast.success("producto añadido al carrito");
+  };
+
   return (
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
       <a href="#">
@@ -21,9 +28,9 @@ export const ProductCard = ({ id, name, price }: ProducTypes) => {
               ${price}
             </p>
 
-            <div className="ml-auto">
+            <button onClick={() => addProductToCart(id)} className="ml-auto">
               <IoBagAddOutline />
-            </div>
+            </button>
           </div>
         </div>
       </a>

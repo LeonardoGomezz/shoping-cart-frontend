@@ -7,7 +7,6 @@ import { Footer } from "./Footer";
 
 export const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(false);
-  console.log("whow => ", showSidebar);
 
   return (
     <>
