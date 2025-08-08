@@ -1,11 +1,24 @@
+import { ProducTypes } from "@/types/product";
 import { api } from "@/utils/fetcher";
 
-export const addToCart = async (id: number) => {
-  const { data } = await api.post(`/cart/${id}`);
-  return data;
+export const addToCart = async (id: number): Promise<ProducTypes> => {
+  try {
+    const { data } = await api.post<ProducTypes>(`/cart/${id}`);
+
+    return data;
+  } catch (error) {
+    console.error("Error adding product to cart: ", error);
+    throw error;
+  }
 };
 
-export const getCart = async () => {
-  const { data } = await api.get("/cart");
-  return data;
+export const getCart = async (): Promise<ProducTypes[]> => {
+  try {
+    const { data } = await api.get<ProducTypes[]>("/cart");
+
+    return data;
+  } catch (error) {
+    console.error("Error retrieving cart: ", error);
+    throw error;
+  }
 };
