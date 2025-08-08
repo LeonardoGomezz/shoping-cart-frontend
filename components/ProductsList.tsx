@@ -1,22 +1,10 @@
 "use client";
-import { getAllProducts } from "@/lib/api/products";
-import { ProducTypes } from "@/types/product";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ProductCard } from "./utilsComponents/ProductCard";
+import { useProducts } from "@/hooks/useProducts";
 
 export const ProductsList = () => {
-  const [products, setProducts] = useState<ProducTypes[]>([]);
-
-  useEffect(() => {
-    getAllProducts()
-      .then((res) => {
-        console.log(res);
-        setProducts(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const { products } = useProducts();
   return (
     <div className="pt-10 pb-32">
       <h1 className="text-2xl font-bold text-center">Listado de productos</h1>

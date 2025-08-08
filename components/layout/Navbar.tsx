@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { TbShoppingCart } from "react-icons/tb";
@@ -26,6 +27,7 @@ export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
                   loading="lazy"
                   width="202"
                   height="40"
+                  alt="logo"
                 />
               </a>
               <div className="flex items-center -mr-2 md:hidden">
