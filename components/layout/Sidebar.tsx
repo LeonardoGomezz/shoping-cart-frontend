@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { CartElementLinst } from "../utilsComponents/CartElementLinst";
 import { useCartStore } from "@/store/cartStore";
+import { TbShoppingCartOff } from "react-icons/tb";
 
 interface SideBarProps {
   onClose: () => void;
@@ -40,21 +41,30 @@ export const Sidebar = ({ onClose, isOpen }: SideBarProps) => {
           </button>
         </div>
 
-        <div className="mt-6 space-y-1">
-          <h3 className="font-semibold text-xl">Tu carrito de compras</h3>
-          <div className="flex flex-col gap-4 pt-2">
-            {cart.map(({ id, name, price }) => (
-              <CartElementLinst key={id} id={id} name={name} price={price} />
-            ))}
-          </div>
+        {cart && cart.length > 0 ? (
+          <div className="mt-6 space-y-1">
+            <h3 className="font-semibold text-xl">Tu carrito de compras</h3>
+            <div className="flex flex-col gap-4 pt-2">
+              {cart.map(({ id, name, price }) => (
+                <CartElementLinst key={id} id={id} name={name} price={price} />
+              ))}
+            </div>
 
-          <div className="border-t pt-4 mt-4">
-            <div className="flex justify-between text-lg font-semibold">
-              <span>Subtotal</span>
-              <span>${subtotal.toLocaleString()}</span>
+            <div className="border-t pt-4 mt-4">
+              <div className="flex justify-between text-lg font-semibold">
+                <span>Subtotal</span>
+                <span>${subtotal.toLocaleString()}</span>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-6 space-y-1 pt-4 flex flex-col items-center justify-center h-screen">
+            <TbShoppingCartOff size={40} className="text-gray-400" />
+            <h3 className="text-center text-xl pt-4 text-gray-400">
+              Tu carrito de compras está vacío
+            </h3>
+          </div>
+        )}
       </div>
     </div>
   );

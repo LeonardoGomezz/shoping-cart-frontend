@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { TbShoppingCart } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
+import { useCartStore } from "@/store/cartStore";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -11,6 +12,8 @@ interface NavbarProps {
 
 export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
+  const cart = useCartStore((state) => state.cart);
+  const cartItems = cart.length;
 
   return (
     <div className="px-4 mx-auto max-w-7xl sm:px-6 shadow-md">
@@ -35,9 +38,14 @@ export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
               <div className="flex items-center -mr-2 md:hidden">
                 <button
                   onClick={onToggleSidebar}
-                  className="md:hidden inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
+                  className="relative md:hidden inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
                 >
-                  <TbShoppingCart />
+                  <TbShoppingCart size={20} />
+                  {cart && cart.length > 0 && (
+                    <span className="absolute w-3 h-3 flex justify-center items-center top-[-10] left-[-10px] bg-blue-950 text-white p-3 rounded-full text-xs">
+                      {cartItems}
+                    </span>
+                  )}
                 </button>
 
                 <button
@@ -71,9 +79,14 @@ export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             <div className="inline-flex rounded-full shadow">
               <button
                 onClick={onToggleSidebar}
-                className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
+                className="relative inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 "
               >
                 <TbShoppingCart />
+                {cart && cart.length > 0 && (
+                  <span className="absolute w-3 h-3 flex justify-center items-center top-[-10] left-[-10px] bg-blue-950 text-white p-3 rounded-full text-xs">
+                    {cartItems}
+                  </span>
+                )}
               </button>
             </div>
           </div>
