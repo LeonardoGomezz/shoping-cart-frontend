@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import { NAV_ITEMS } from "@/utils/data/data";
 import React, { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { TbShoppingCart } from "react-icons/tb";
+import { IoMdClose } from "react-icons/io";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -37,46 +39,34 @@ export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
                 >
                   <TbShoppingCart />
                 </button>
+
                 <button
+                  onClick={() => setShowSubMenu(!showSubMenu)}
                   className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-50"
                   type="button"
-                  aria-expanded="false"
+                  aria-expanded={showSubMenu}
+                  aria-label="Toggle menu"
                 >
-                  <span className="sr-only">Open main menu</span>
-                  <HiOutlineMenu />
+                  {showSubMenu === true ? <IoMdClose /> : <HiOutlineMenu />}
                 </button>
               </div>
             </div>
           </div>
+
           <div className="hidden md:flex md:space-x-10 list-none">
-            <li>
-              <a
-                href="#"
-                className="text-base font-normal text-gray-500 list-none hover:text-gray-900"
-                target=""
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-base font-normal text-gray-500 list-none hover:text-gray-900"
-                target=""
-              >
-                Gallary
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-base font-normal text-gray-500 list-none hover:text-gray-900"
-                target="_blank"
-              >
-                Blog
-              </a>
-            </li>
+            {NAV_ITEMS.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href="#"
+                  className="text-base font-normal text-gray-500 list-none hover:text-gray-900"
+                  target=""
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
           </div>
+
           <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             <div className="inline-flex rounded-full shadow">
               <button
@@ -88,6 +78,26 @@ export const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             </div>
           </div>
         </nav>
+
+        <div
+          className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+            showSubMenu ? "max-h-[500px]" : "max-h-0"
+          }`}
+        >
+          <ul className="flex flex-col items-center space-y-4 p-4 bg-white border-t border-gray-200 mt-2">
+            {NAV_ITEMS.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href="#"
+                  className="block text-gray-700 font-medium hover:text-gray-900"
+                  onClick={() => setShowSubMenu(false)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
