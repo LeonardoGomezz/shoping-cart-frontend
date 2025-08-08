@@ -6,7 +6,6 @@ import { IoBagAddOutline } from "react-icons/io5";
 
 export const ProductCard = ({ id, name, price }: ProducTypes) => {
   const addProductToCart = useCartStore((state) => state.addProductToCart);
-  // const inCart = isInCart(id);
 
   return (
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
@@ -24,11 +23,7 @@ export const ProductCard = ({ id, name, price }: ProducTypes) => {
           <p className="text-lg font-semibold text-black cursor-auto my-3">
             ${price}
           </p>
-          <button
-            // disabled={inCart}
-            onClick={() => addProductToCart(id)}
-            className="ml-auto"
-          >
+          <button onClick={() => addProductToCart(id)} className="ml-auto">
             <IoBagAddOutline />
           </button>
         </div>
