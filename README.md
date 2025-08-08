@@ -71,7 +71,7 @@ npm run dev
 
 - Link para clonar el respositorio con el backend [(https://github.com/LeonardoGomezz/shoping-cart-api)]
 
-## Authors
+## Autor
 
 - [Leonardo Gomez](https://github.com/LeonardoGomezz)
 - [Portafolio](https://portafolio-leonardogomez.netlify.app/es/)
