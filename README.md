@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# API y Carrito de Compras
 
-## Getting Started
+## Descripción
 
-First, run the development server:
+Proyecto que consiste en una API básica para gestionar productos y un carrito de compras, junto con un frontend que consume esta API. Permite agregar productos al carrito, visualizarlo y calcular la mejor combinación de productos dentro de un presupuesto.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Tecnologías usadas
+
+- Backend: Spring Boot (Java)
+- Frontend: Next.js con TypeScript
+- Estado global: Zustand
+- Estilos: Tailwind CSS
+- Notificaciones: Sonner
+- API Requests: Axios
+
+---
+
+## Funcionalidades
+
+### Backend
+
+- Endpoint `/products` para obtener una lista estática de productos.
+- Endpoint `/cart` (GET) para obtener productos agregados al carrito.
+- Endpoint `/cart/{productId}` (POST) para agregar productos al carrito.
+- Endpoint `/cart/{productId}` (DELETE) para eliminar productos del carrito (funcionalidad añadida opcional).
+- Carrito en memoria (sin base de datos).
+
+### Frontend
+
+- Mostrar lista de productos.
+- Agregar productos al carrito.
+- Mostrar carrito con productos agregados.
+- Eliminar productos del carrito.
+- Calcular la mejor combinación de productos según presupuesto dado.
+
+---
+
+## Instalación y ejecución
+
+### Requisitos previos
+
+- Java 17+ y Maven (para backend)
+- Node.js 18+ y npm/yarn (para frontend)
+
+### Recomendaciones
+
+- Para correr el backend tener instalado netbeans o intellij IDEA.
+
+### Ejecutar el frontend
+
+- abrir el proyecto
+- instalar dependencias:
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- crear un archivo .env, y agregar la variable de entorno:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_API_URL=http://localhost:8080
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Correr el proyecto
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Link para clonar el respositorio con el backend [(https://github.com/LeonardoGomezz/shoping-cart-api)]
