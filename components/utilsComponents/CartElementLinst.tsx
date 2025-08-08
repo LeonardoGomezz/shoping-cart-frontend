@@ -1,9 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import { useCartStore } from "@/store/cartStore";
 import { ProducTypes } from "@/types/product";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const CartElementLinst = ({ id, name, price }: ProducTypes) => {
+  const removeProductFromCart = useCartStore(
+    (state) => state.removeProductFromCart
+  );
   return (
     <div className="flex gap-2 justify-between items-center">
       <div className="flex gap-2">
@@ -17,7 +21,10 @@ export const CartElementLinst = ({ id, name, price }: ProducTypes) => {
           <p className="pt-2">$ {price}</p>
         </div>
       </div>
-      <button className="group hover:bg-red-300 hoover:text-white h-fit p-2 rounded-lg cursor-pointer">
+      <button
+        className="group hover:bg-red-300 hoover:text-white h-fit p-2 rounded-lg cursor-pointer"
+        onClick={() => removeProductFromCart(id)}
+      >
         <RiDeleteBin6Line className="group-hover:text-white" />
       </button>
     </div>

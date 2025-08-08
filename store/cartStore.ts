@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { toast } from "sonner";
 import { ProducTypes } from "@/types/product";
-import { getCart, addToCart } from "@/lib/api/cart";
+import { getCart, addToCart, removeToCart } from "@/lib/api/cart";
 import { getAllProducts } from "@/lib/api/products";
 
 interface CartState {
@@ -12,6 +12,7 @@ interface CartState {
   fetchCart: () => Promise<void>;
   isInCart: (id: number) => boolean;
   addProductToCart: (id: number) => Promise<void>;
+  removeProductFromCart: (id: number) => Promise<void>;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -55,6 +56,17 @@ export const useCartStore = create<CartState>((set, get) => ({
     } catch (error) {
       console.error("Error al añadir producto:", error);
       toast.error("No se pudo añadir el producto");
+    }
+  },
+
+  removeProductFromCart: async (id: number) => {
+    try {
+      await removeToCart(id);
+      await get().fetchCart();
+      toast.success("Producto eliminado del carrito");
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      toast.error("No se pudo eliminar el producto");
     }
   },
 }));

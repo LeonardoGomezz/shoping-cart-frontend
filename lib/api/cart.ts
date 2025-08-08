@@ -22,3 +22,13 @@ export const getCart = async (): Promise<ProducTypes[]> => {
     throw error;
   }
 };
+
+export const removeToCart = async (id: number): Promise<ProducTypes> => {
+  try {
+    const { data } = await api.delete<ProducTypes>(`/cart/${id}`);
+    return data;
+  } catch (error) {
+    console.error("cannot remove product to cart: ", error);
+    throw error;
+  }
+};
